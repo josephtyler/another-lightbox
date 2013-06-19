@@ -1,0 +1,93 @@
+<!doctype html>
+<html>
+<head>
+	<title>ws-lightbox demo</title>
+
+	<!-- You must load jquery -->
+	<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+
+	<!-- ws-lightbox js, css -->
+	<script src="ws-lightbox.js" type="text/javascript"></script>
+	<link type="text/css" rel="stylesheet" href="ws-lightbox.css">
+
+</head>
+<body>
+
+	<h1>ws-lightbox demo</h1>
+	<h3>view the page source for details</h3>
+
+	<script type="text/javascript">
+	$(document).ready(function(){
+		$("#youtube-video").click(function(){
+			var params = {};
+			params.type = 'youtube';
+			params.src = 'http://www.youtube.com/embed/PGMQZEIXBMs';
+			params.height = 400;
+			params.width = 600;
+			// Opens the lightbox
+			ws_lightbox.open(params);
+		});
+	});
+	</script>
+
+	<div>
+		<a id="youtube-video">Click to see a youtube video</a>
+	</div>
+
+	<script type="text/javascript">
+	$(document).ready(function(){
+		$("#iframe-box").click(function(){
+			var params = {};
+			params.type = 'iframe';
+			params.src = 'http://thelibertarianrepublic.com/';
+			params.height = 600;
+			params.width = 1000;
+			params.overflow_hidden = false;
+			// Opens the lightbox
+			ws_lightbox.open(params);
+		});
+	});
+	</script>
+
+	<div>
+		<a id="iframe-box">Click to see an iframe</a>
+	</div>
+
+	<script type="text/javascript">
+	$(document).ready(function(){
+		$("#dialog-box").click(function(){
+			var params = {};
+			params.type = 'dialog';
+			params.height = 30;
+			params.width = 400;
+			params.message = "Thank you for voting, slave.";
+			// Opens the lightbox
+			ws_lightbox.open(params);
+		});
+	});
+	</script>
+
+	<div>
+		<a id="dialog-box">Click to see a dialog box</a>
+	</div>
+
+	<script type="text/javascript">
+	$(document).ready(function(){
+		$("#freestyle-box").click(function(){
+			var params = {};
+			params.type = 'freestyle';
+			params.height = 200;
+			params.width = 600;
+			params.html = "<h1>I am html!</h1>";
+			// Opens the lightbox
+			ws_lightbox.open(params);
+		});
+	});
+	</script>
+
+	<div>
+		<a id="freestyle-box">Click to see a freestyle (html) box</a>
+	</div>
+
+</body>
+</html>
