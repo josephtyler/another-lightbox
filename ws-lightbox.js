@@ -1,5 +1,5 @@
 /** 
- * WS LIGHTBOX is the webstarts lightbox
+ * WS LIGHTBOX
  *
  * Usage:
  *		params.type = 'youtube'; // iframe, dialog, etc
@@ -22,7 +22,7 @@ var ws_lightbox =
 			args.type = 'iframe';
 			
 		// Make sure a 'type' value exists
-		if(args.type!='iframe' && args.type!='youtube' && args.type!='dialog' && args.type!='freestyle')
+		if(args.type!='iframe' && args.type!='youtube' && args.type!='dialog' && args.type!='freestyle' && args.type!='image')
 			return false;
 			
 		if(args.easy_close==false)
@@ -48,6 +48,9 @@ var ws_lightbox =
 			case 'freestyle':
 				this.freestyle_box(args);
 				break;
+      case 'image':
+        this.image_box(args);
+        break;
 		}
 			
 	},
@@ -168,11 +171,49 @@ var ws_lightbox =
 		
 		$("#ws-lightbox-outer").fadeIn();
 	},
-	close : function()
-	{
-		jQuery("#ws-lightbox-outer").fadeOut('fast',function(){
-			jQuery(this).remove();
-		});
+  image_box : function(args)
+  {
+    if (!args.src)
+      return
+
+    var setupImagebox = function(){
+      // Validate height and width
+      if(!args.height || !args.width){
+        var winRatio = $(window).height()/$(window).width();
+        if (img.height/img.width>winRatio){
+          args.height = img.height > $(window).height() ? $(window).height() * 0.9 : img.height;
+          args.width = img.width*(args.height/img.height);
+        }else{
+          args.width = img.width > $(window).width() ? $(window).width() * 0.9 : img.width;
+          args.height = img.height*(args.width/img.width);
+        }
+      }
+
+      var html = '<div id="ws-lightbox-outer" style="display:none;">';
+      html += '<div id="close-lb" class="close-lb"></div>'; // Lightbox close 'x'
+      html += '<div class="ws-image-subject-wrapper"><img class="ws-image-subject" src="'+args.src+'" /></div>';
+      html += '</div>';
+
+      $('BODY').append(html);
+      
+      var margin_left = -((args.width/2));
+      var margin_top = -((args.height/2));
+      
+      $("#ws-lightbox-outer").css({'height':args.height,'width':args.width,'margin-left':margin_left,'margin-top':margin_top,'background-color':'#eee','border-radius':'10px','line-height':'20px','text-align':'center'});
+      
+      $("#ws-lightbox-outer").fadeIn();
+    }
+
+    var img = new Image;
+    img.onload = setupImagebox;
+    img.src = args.src; 
+
+  },
+  close : function()
+  {
+    jQuery("#ws-lightbox-outer").fadeOut('fast',function(){
+      jQuery(this).remove();
+    });
 		jQuery(".backdrop").fadeOut('fast',function(){
 			jQuery(this).remove();
 		});
