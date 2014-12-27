@@ -1,18 +1,18 @@
 /** 
- * WS LIGHTBOX
+ * ANOTHER LIGHTBOX
  *
  * Usage:
  *		params.type = 'youtube'; // iframe, dialog, etc
  *		params.src = 'http://youtube.src.com'
  *		params.height = 400;
  *		params.width = 600;
- *		ws_lightbox.open(params);
+ *		anotherLightbox.open(params);
  *
  * Note: If you are using the 'dialog' feature, you must pass params.message
  * with the 'dialog' feature, you can also send params.confirm = true to get a yes or no
  */
 
-var ws_lightbox = 
+var anotherLightbox = 
 {
 	easy_close : true,
 	open : function(args)
@@ -228,11 +228,11 @@ jQuery(document).ready(function(){
 		switch(jQuery(e.target).attr('id'))
 		{
 			case "close-lb":
-				ws_lightbox.close();
+				anotherLightbox.close();
 				break;
 			case "backdrop":
-				if(ws_lightbox.easy_close==true)
-					ws_lightbox.close();
+				if(anotherLightbox.easy_close==true)
+					anotherLightbox.close();
 				break;
 		}
 	});
